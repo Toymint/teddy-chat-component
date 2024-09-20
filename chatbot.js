@@ -66,7 +66,7 @@ class ChatBot extends HTMLElement {
                     cursor: pointer;
                     font-size: 18px;
                 }
-                }                                                                                                                               
+                                                                                                                                          
                                                                                                                                                 
                 .chat-body {
                     flex-grow: 1;
