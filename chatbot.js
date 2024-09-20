@@ -60,6 +60,7 @@ class ChatBot extends HTMLElement {
       this.currentAudio.muted = !this.currentAudio.muted;
       this.muteBtn.textContent = this.currentAudio.muted ? '🔇' : '🔊';
     }
+  }
 
   // Handles key press events for focusable elements
   handleKeyPress(event) {
