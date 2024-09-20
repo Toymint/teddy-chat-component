@@ -65,9 +65,9 @@ class ChatBot extends HTMLElement {
           border-radius: 12px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           flex-direction: column;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          font-family: 'Roboto', sans-serif;
           display: none;
-          font-size: 14px;
+          font-size: 15px;
       }
       .chat-window.fullscreen {
           height: 90vh;
@@ -84,7 +84,7 @@ class ChatBot extends HTMLElement {
       }
       .chat-header {
           background-color: ${this.primaryColor};
-          color: white;
+          color: #f8f9fa;
           padding: 10px;
           border-top-left-radius: 8px;
           border-top-right-radius: 8px;
@@ -149,7 +149,7 @@ class ChatBot extends HTMLElement {
           margin-right: 10px;
           padding: 10px 15px;
           background-color: #e0e0e0;
-          color: #333;
+          color: #444;
           border: 1px solid #ccc;
           border-radius: 4px;
           cursor: pointer;
@@ -190,13 +190,13 @@ class ChatBot extends HTMLElement {
       }
       .message.user {
           background-color: #007aff;
-          color: white;
+          color: #f8f9fa;
           align-self: flex-end;
           border-bottom-right-radius: 0;
       }
       .message.assistant {
           background-color: #e5e5ea;
-          color: black;
+          color: #333;
           align-self: flex-start;
           border-bottom-left-radius: 0;
       }
