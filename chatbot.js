@@ -85,6 +85,7 @@ class ChatBot extends HTMLElement {
                     width: 100%;
                     height: 100%;
                 }
+                .chat-body {
                     flex-grow: 1;
                     padding: 10px;
                     overflow-y: auto;
