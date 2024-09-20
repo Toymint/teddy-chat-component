@@ -1,3 +1,29 @@
+/**
+ * ChatBot Component
+ * 
+ * This JavaScript file defines a custom HTML element <chat-bot> that provides an interactive chat interface.
+ * The ChatBot component is designed to be embedded in web pages, offering a chat experience with a virtual assistant.
+ * 
+ * Key Features:
+ * - Customizable appearance with primary and secondary colors.
+ * - Responsive design that adapts to different screen sizes.
+ * - Video integration for a more engaging chat experience.
+ * - Pre-canned responses for quick user interaction.
+ * - Dynamic message handling with user and assistant messages.
+ * - Error handling and retry mechanism for message sending.
+ * - Typing indicator to show when the assistant is responding.
+ * 
+ * Usage:
+ * Include this script in your HTML and add the <chat-bot> element with the necessary attributes:
+ * - primary-color: The primary color for the chat interface.
+ * - secondary-color: The secondary color for the chat interface.
+ * - experience: The experience ID for fetching assistant data.
+ * - assistant: The name of the assistant to interact with.
+ * 
+ * Example:
+ * <chat-bot primary-color="#007bff" secondary-color="#f0f0f0" experience="66c8cd6f8619437fdb540eee" assistant="nfp"></chat-bot>
+ */
+
 let assistant;
 
 class ChatBot extends HTMLElement {
