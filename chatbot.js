@@ -214,7 +214,7 @@ class ChatBot extends HTMLElement {
             </div>
             <div class="chat-window" id="chatWindow">                                                                                           
                 <div class="chat-header">
-                    <span>Chatbot</span>
+                    <span>Teddy Chat</span>
                     <span class="header-spacer"></span>
                     <span class="expand-btn" id="expandBtn">&#x26F6;</span>
                     <span class="close-btn" id="closeBtn">&times;</span>
