@@ -95,6 +95,10 @@ class ChatBot extends HTMLElement {
                     overflow: hidden;
                 }
 
+                .video-container.fullscreen {
+                    height: 20vh; /* Limit height to 20vh in full-screen mode */
+                }
+
                 .video-container video {
                     position: absolute;
                     top: 0;
@@ -238,7 +242,9 @@ class ChatBot extends HTMLElement {
       this.chatWindow.style.height = '80vh';
       this.chatWindow.style.bottom = '90px';
       this.chatWindow.style.right = '20px';
+      this.videoContainer.classList.add('fullscreen');
     } else {
+      this.videoContainer.classList.remove('fullscreen');
       this.chatWindow.style.width = '100%';
       this.chatWindow.style.height = '100%';
       this.chatWindow.style.bottom = '0';
