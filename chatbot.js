@@ -60,6 +60,10 @@ class ChatBot extends HTMLElement {
                     font-size: 14px;
                 }
 
+                .chat-window.fullscreen {
+                    height: 90vh; /* Adjust height for full-screen mode */
+                }
+
                 @media (max-width: 768px) {
                     .chat-window {
                         width: 100%;
@@ -127,12 +131,13 @@ class ChatBot extends HTMLElement {
                 .pre-canned-responses button {
                     flex: 0 0 auto;
                     margin-right: 10px;
-                    padding: 5px 10px;
+                    padding: 10px 15px; /* Increase padding for better visibility */
                     background-color: #f0f0f0;
                     color: #333;
                     border: 1px solid #ccc;
                     border-radius: 4px;
                     cursor: pointer;
+                    font-size: 16px; /* Increase font size for better visibility */
                 }
                 
                 .chat-footer {
