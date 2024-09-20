@@ -224,16 +224,15 @@ class ChatBot extends HTMLElement {
             initialMessage.textContent = assistant.initialPrompt;
             this.chatBody.appendChild(initialMessage);
             const preCannedResponsesContainer = this.shadowRoot.getElementById('preCannedResponses');
-            assistant.initialResponses.forEach(response => {
-                const button = document.createElement('button');
-                button.textContent = response;
-                button.addEventListener('click', () => {
-                    this.chatInput.value = response;
-                    this.sendMessage();
-                });
-                preCannedResponsesContainer.appendChild(button);
+            assistant.initialResponses.forEach((response) => {
+              const button = document.createElement('button');
+              button.textContent = response;
+              button.addEventListener('click', () => {
+                this.chatInput.value = response;
+                this.sendMessage();
+              });
+              preCannedResponsesContainer.appendChild(button);
             });
-            console.error('Assistant not found');
           }
         })
         .catch((error) => console.error('Error fetching experience:', error));
