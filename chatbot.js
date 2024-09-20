@@ -67,16 +67,19 @@ class ChatBot extends HTMLElement {
                 }
                 }                                                                                                                               
                                                                                                                                                 
-                .chat-body {                                                                                                                    
-                    flex: 1;                                                                                                                    
-                    padding: 10px;                                                                                                              
-                    overflow-y: auto;                                                                                                           
-                }                                                                                                                               
-                                                                                                                                                
-                .chat-footer {                                                                                                                  
-                    display: flex;                                                                                                              
-                    padding: 10px;                                                                                                              
-                    border-top: 1px solid #ccc;                                                                                                 
+                .chat-body {
+                    flex: 1;
+                    padding: 10px;
+                    overflow-y: auto;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .chat-footer {
+                    display: flex;
+                    padding: 10px;
+                    border-top: 1px solid #ccc;
+                    align-items: center;
                 }                                                                                                                               
                                                                                                                                                 
                 .chat-footer input {                                                                                                            
@@ -136,7 +139,21 @@ class ChatBot extends HTMLElement {
     this.sendButton.addEventListener('click', () => this.sendMessage());
     this.closeBtn = this.shadowRoot.getElementById('closeBtn');
     this.closeBtn.addEventListener('click', () => this.toggleChat());
+    this.closeBtn = this.shadowRoot.getElementById('closeBtn');
+    this.closeBtn.addEventListener('click', () => this.toggleChat());
+
+    this.chatInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        this.sendMessage();
+      }
+    });
   }
+
+  toggleChat() {
+    this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
+    if (this.chatWindow.style.display === 'flex') {
+      this.chatInput.focus();
+    }
 
   toggleChat() {
     this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
