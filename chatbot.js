@@ -89,7 +89,7 @@ class ChatBot extends HTMLElement {
                     overflow: hidden;
                 }
 
-                .video-container iframe {
+                .video-container video {
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -151,7 +151,7 @@ class ChatBot extends HTMLElement {
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
                 <div class="video-container">
-                    <iframe src="" frameborder="0" allow="autoplay; loop; controls; muted;" muted controls="0"></iframe>
+                    <video src="" autoplay loop muted playsinline></video>
                 </div>
                 <div class="chat-body" id="chatBody">
                     <div class="message assistant">Hello! How can I assist you today?</div>                                                     
@@ -196,8 +196,8 @@ class ChatBot extends HTMLElement {
           const assistant = data.assistants.find((a) => a.name === this.assistantName);
           if (assistant) {
             console.log('Assistant Found:', assistant);
-            const videoIframe = this.shadowRoot.querySelector('.video-container iframe');
-            videoIframe.src = `https://teddy.chat${assistant.initialVideo}`;
+            const videoElement = this.shadowRoot.querySelector('.video-container video');
+            videoElement.src = `https://teddy.chat${assistant.initialVideo}`;
           } else {
             console.error('Assistant not found');
           }
