@@ -8,7 +8,7 @@ class ChatBot extends HTMLElement {
     const secondaryColor = this.getAttribute('secondary-color') || '#ffffff';
 
     // Get experience ID from attribute
-    this.experienceId = this.getAttribute('experience') || '66c8cd6f8619437fdb540eee';
+    this.experienceId = this.getAttribute('experience') || '';
 
     // Get assistant name from attribute
     this.assistantName = this.getAttribute('assistant') || '';
