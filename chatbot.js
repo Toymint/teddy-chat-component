@@ -96,7 +96,9 @@ class ChatBot extends HTMLElement {
                 }
 
                 .video-container.fullscreen {
-                    height: 20vh; /* Limit height to 20vh in full-screen mode */
+                    video {
+                      height: 20vh; /* Limit height to 20vh in full-screen mode */
+                    }
                 }
 
                 .video-container video {
@@ -217,7 +219,7 @@ class ChatBot extends HTMLElement {
     this.chatInput = this.shadowRoot.getElementById('chatInput');
     this.chatBody = this.shadowRoot.getElementById('chatBody');
     this.sendButton = this.shadowRoot.getElementById('sendButton');
-
+    this.videoContainer = this.shadowRoot.querySelector('.video-container');
     this.lastMessageText = ''; // Store the last message text
 
     this.fab.addEventListener('click', () => this.toggleChat());
@@ -242,13 +244,13 @@ class ChatBot extends HTMLElement {
       this.chatWindow.style.height = '80vh';
       this.chatWindow.style.bottom = '90px';
       this.chatWindow.style.right = '20px';
-      this.videoContainer.classList.add('fullscreen');
-    } else {
       this.videoContainer.classList.remove('fullscreen');
+    } else {
       this.chatWindow.style.width = '100%';
       this.chatWindow.style.height = '100%';
       this.chatWindow.style.bottom = '0';
       this.chatWindow.style.right = '0';
+      this.videoContainer.classList.add('fullscreen');
     }
   }
 
