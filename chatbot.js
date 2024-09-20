@@ -311,7 +311,21 @@ class ChatBot extends HTMLElement {
               console.log(decodedText);
               const assistantMessage = document.createElement('div');
               assistantMessage.className = 'message assistant';
-              assistantMessage.textContent = decodedResponse.response.text;
+              const responseText = decodedResponse.response.text;
+              const urlRegex = /(https?:\/\/[^\s]+)/g;
+              const parts = responseText.split(urlRegex);
+
+              parts.forEach((part) => {
+                if (urlRegex.test(part)) {
+                  const link = document.createElement('a');
+                  link.href = part;
+                  link.textContent = 'click here';
+                  link.target = '_blank';
+                  assistantMessage.appendChild(link);
+                } else {
+                  assistantMessage.appendChild(document.createTextNode(part));
+                }
+              });
               this.chatBody.appendChild(assistantMessage);
               this.chatBody.scrollTop = this.chatBody.scrollHeight;
 
