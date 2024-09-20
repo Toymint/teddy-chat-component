@@ -47,7 +47,18 @@ class ChatBot extends HTMLElement {
     this.sessionId = this.generateUUID();
     this.lastMessageText = '';
     this.isMessageSending = false;
+    this.fab.addEventListener('keydown', this.handleKeyPress.bind(this));
+    this.expandBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
+    this.closeBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
+    this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
   }
+
+  // Handles key press events for focusable elements
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.target.click();
+    }
 
   // Handles focus management when the chat window is toggled
   manageFocus() {
