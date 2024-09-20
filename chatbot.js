@@ -70,7 +70,21 @@ class ChatBot extends HTMLElement {
                 }
                                                                                                                                           
                                                                                                                                                 
-                .chat-body {
+                .video-container {
+                    width: 100%;
+                    position: relative;
+                    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+                    height: 0;
+                    overflow: hidden;
+                }
+
+                .video-container iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
                     flex-grow: 1;
                     padding: 10px;
                     overflow-y: auto;
@@ -124,7 +138,10 @@ class ChatBot extends HTMLElement {
                     <span>Chatbot</span>
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
-                <div class="chat-body" id="chatBody">                                                                                           
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="chat-body" id="chatBody">
                     <div class="message assistant">Hello! How can I assist you today?</div>                                                     
                 </div>                                                                                                                          
                 <div class="chat-footer">                                                                                                       
