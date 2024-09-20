@@ -184,6 +184,13 @@ class ChatBot extends HTMLElement {
   toggleChat() {
     this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
     if (this.chatWindow.style.display === 'flex') {
+      const experienceUrl = `https://teddy.chat/api/experiences/${this.experienceId}`;
+      
+      fetch(experienceUrl)
+        .then(response => response.json())
+        .then(data => console.log('Experience Data:', data))
+        .catch((error) => console.error('Error fetching experience:', error));
+
       this.chatInput.focus();
     }
   }
