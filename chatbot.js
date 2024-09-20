@@ -269,7 +269,10 @@ class ChatBot extends HTMLElement {
     const isHidden = this.chatWindow.style.display === 'none';
 
     this.chatWindow.style.display = isHidden ? 'flex' : 'none';
-    if (isHidden && !this.isInitialized) this.initializeChat();
+    if (isHidden) {
+      if (!this.isInitialized) this.initializeChat();
+      this.chatBody.scrollTop = this.chatBody.scrollHeight;
+    }
   }
 
   initializeChat() {
