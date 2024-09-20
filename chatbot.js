@@ -52,6 +52,7 @@ class ChatBot extends HTMLElement {
     this.expandBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.closeBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
+    this.chatBody.addEventListener('click', () => this.chatInput.blur()); // Hide keyboard on mobile when clicking chat area
   }
 
   // Toggles the mute state of the audio
@@ -372,7 +373,6 @@ class ChatBot extends HTMLElement {
       .then((data) => this.setupAssistant(data))
       .catch((error) => console.error('Error fetching experience:', error));
 
-    this.chatInput.focus();
   }
 
   // Sets up the assistant with initial video, prompt, and responses
@@ -455,6 +455,7 @@ class ChatBot extends HTMLElement {
       .catch((error) => this.handleError(error));
 
     this.chatInput.value = '';
+    this.chatInput.blur(); // Hide keyboard on mobile after sending a message
     this.chatInput.focus();
   }
 
