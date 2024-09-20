@@ -7,22 +7,22 @@ class ChatBot extends HTMLElement {
     const template = document.createElement('template');
     template.innerHTML = `                                                                                                                  
             <style>                                                                                                                             
-                /* Styles for the FAB button */                                                                                                 
-                .fab {                                                                                                                          
-                    position: fixed;                                                                                                            
-                    bottom: 20px;                                                                                                               
-                    right: 20px;                                                                                                                
-                    width: 60px;                                                                                                                
-                    height: 60px;                                                                                                               
-                    background-color: #007bff;                                                                                                  
-                    border-radius: 50%;                                                                                                         
-                    display: flex;                                                                                                              
-                    justify-content: center;                                                                                                    
-                    align-items: center;                                                                                                        
-                    color: white;                                                                                                               
-                    font-size: 24px;                                                                                                            
-                    cursor: pointer;                                                                                                            
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                                                                                   
+                /* Styles for the FAB button */
+                .fab {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    width: 56px;
+                    height: 56px;
+                    background-color: #007bff;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    font-size: 20px;
+                    cursor: pointer;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 }
 
                 /* Styles for the chat window */
@@ -30,15 +30,17 @@ class ChatBot extends HTMLElement {
                     position: fixed;
                     bottom: 90px;
                     right: 20px;
-                    width: 300px;
-                    height: 40vh;
+                    width: 320px;
+                    height: 50vh;
                     background-color: white;
-                    border: 1px solid #ccc;
-                    border-radius: 8px;
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                    border: 1px solid #ddd;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                     display: none;
                     display: flex;
                     flex-direction: column;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-size: 14px;
                 }
 
                 @media (max-width: 768px) {
