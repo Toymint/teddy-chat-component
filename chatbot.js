@@ -40,6 +40,7 @@ class ChatBot extends HTMLElement {
                     cursor: pointer;
                     font-size: 18px;
                     margin-left: 10px;
+                    width: 24px;
                 }
 
                 /* Styles for the chat window */
@@ -88,8 +89,12 @@ class ChatBot extends HTMLElement {
                 .close-btn {
                     cursor: pointer;
                     font-size: 18px;
+                    width: 24px;
                 }
-                                                                                                                                          
+
+                .header-spacer {
+                  flex-grow: 1;
+                }
                                                                                                                                                 
                 .video-container {
                     background: black;
@@ -201,6 +206,7 @@ class ChatBot extends HTMLElement {
             <div class="chat-window" id="chatWindow">                                                                                           
                 <div class="chat-header">
                     <span>Chatbot</span>
+                    <span class="header-spacer"></span>
                     <span class="expand-btn" id="expandBtn">&#x26F6;</span>
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
