@@ -346,6 +346,20 @@ class ChatBot extends HTMLElement {
         })
         .catch((error) => {
           console.error('Error sending message:', error);
+
+          const errorMessage = document.createElement('div');
+          errorMessage.className = 'message assistant';
+          errorMessage.textContent = 'Failed to send message. Please try again.';
+          this.chatBody.appendChild(errorMessage);
+
+          const retryButton = document.createElement('button');
+          retryButton.textContent = 'Retry';
+          retryButton.addEventListener('click', () => {
+            this.sendMessage();
+          });
+          this.chatBody.appendChild(retryButton);
+
+          this.chatBody.scrollTop = this.chatBody.scrollHeight;
         });
       // Clear and focus the input box
       this.chatInput.value = '';
