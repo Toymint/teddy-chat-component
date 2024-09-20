@@ -118,6 +118,13 @@ class ChatBot extends HTMLElement {
                     height: 100%;
                     object-fit: cover;
                 }
+                .typing-indicator {
+                    display: none;
+                    font-style: italic;
+                    color: #888;
+                    margin-bottom: 10px;
+                }
+
                 .chat-body {
                     flex-grow: 1;
                     padding: 10px;
@@ -215,6 +222,7 @@ class ChatBot extends HTMLElement {
                 </div>
                 <div class="chat-body" id="chatBody">
                 </div>
+                <div class="typing-indicator" id="typingIndicator">Chatbot is typing...</div>
                 <div class="pre-canned-responses" id="preCannedResponses"></div>
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
@@ -323,6 +331,9 @@ class ChatBot extends HTMLElement {
 
       this.lastMessageText = messageText; // Store the last message
 
+      const typingIndicator = this.shadowRoot.getElementById('typingIndicator');
+      typingIndicator.style.display = 'block'; // Show typing indicator
+
       const payload = {
         experienceId: this.experienceId,
         experienceName: this.assistantName,
@@ -338,7 +349,7 @@ class ChatBot extends HTMLElement {
         body: JSON.stringify(payload),
       })
         .then((response) => {
-          console.log(response.headers);
+          typingIndicator.style.display = 'none'; // Hide typing indicator
           const textResponse = response.headers.get('X-Text-Response');
           console.log(textResponse);
           // Extract audio from response body
@@ -393,6 +404,8 @@ class ChatBot extends HTMLElement {
         })
         .catch((error) => {
           console.error('Error sending message:', error);
+
+          typingIndicator.style.display = 'none'; // Hide typing indicator
 
           const errorMessage = document.createElement('div');
           errorMessage.className = 'message assistant';
