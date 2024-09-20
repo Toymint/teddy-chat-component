@@ -59,6 +59,7 @@ class ChatBot extends HTMLElement {
       event.preventDefault();
       event.target.click();
     }
+  }
 
   // Handles focus management when the chat window is toggled
   manageFocus() {
