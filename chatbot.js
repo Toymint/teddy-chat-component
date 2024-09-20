@@ -43,6 +43,7 @@ class ChatBot extends HTMLElement {
     this.initializeElements();
     this.addEventListeners();
 
+    this.currentAudio = null;
     this.isInitialized = false;
     this.sessionId = this.generateUUID();
     this.lastMessageText = '';
@@ -416,6 +417,10 @@ class ChatBot extends HTMLElement {
     const messageText = this.chatInput.value.trim();
     if (!messageText) return;
     if (!messageText || this.isMessageSending) return;
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio = null;
+    }
     this.isMessageSending = true;
     this.showTypingIndicator(true);
 
@@ -448,8 +453,8 @@ class ChatBot extends HTMLElement {
     const textResponse = response.headers.get('X-Text-Response');
     return response.blob().then((audioBlob) => {
       const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      audio.play();
+      this.currentAudio = new Audio(audioUrl);
+      this.currentAudio.play();
 
       if (textResponse) {
         const decodedResponse = JSON.parse(atob(textResponse));
