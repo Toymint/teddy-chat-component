@@ -97,11 +97,12 @@ class ChatBot extends HTMLElement {
                 }
                                                                                                                                                 
                 .video-container {
-                    background: black;
-                    width: 100%;
-                    position: relative;
-                    height: 25vh;
-                    overflow: hidden;
+                    background: black;                                                                                    
+     width: 100%;                                                                                          
+     position: relative;                                                                                   
+     height: 25vh; /* Set a fixed height */                                                                
+     overflow: hidden;                                                                                     
+     flex-shrink: 0;
                 }
 
                 .video-container.fullscreen {
@@ -139,6 +140,7 @@ class ChatBot extends HTMLElement {
                     padding: 10px;
                     border-top: 1px solid #ccc;
                     white-space: nowrap;
+                    min-height: 50px;
                 }
 
                 .pre-canned-responses button {
