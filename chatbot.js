@@ -161,27 +161,30 @@ class ChatBot extends HTMLElement {
                 
                 .chat-footer {
                     display: flex;
-                    padding: 10px;
+                    padding: 0;
                     border-top: 1px solid #ccc;
                     align-items: center;
-                }                                                                                                                               
-                                                                                                                                                
-                .chat-footer input {                                                                                                            
-                    flex: 1;                                                                                                                    
-                    padding: 5px;                                                                                                               
-                    border: 1px solid #ccc;                                                                                                     
-                    border-radius: 4px;                                                                                                         
-                }                                                                                                                               
-                                                                                                                                                
-                .chat-footer button {                                                                                                           
-                    margin-left: 5px;                                                                                                           
-                    padding: 5px 10px;                                                                                                          
-                    background-color: #007bff;                                                                                                  
-                    color: white;                                                                                                               
-                    border: none;                                                                                                               
-                    border-radius: 4px;                                                                                                         
-                    cursor: pointer;                                                                                                            
-                }                                                                                                                               
+                    position: relative;
+                }
+
+                .chat-footer input {
+                    flex: 1;
+                    padding: 10px 40px 10px 10px; /* Add padding for the send button */
+                    border: none;
+                    border-radius: 0;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+
+                .chat-footer button {
+                    position: absolute;
+                    right: 10px;
+                    background-color: transparent;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 20px;
+                    color: #007bff;
+                }
                                                                                                                                                 
                 .message {                                                                                                                      
                     margin-bottom: 10px;                                                                                                        
@@ -232,7 +235,7 @@ class ChatBot extends HTMLElement {
                 <div class="pre-canned-responses" id="preCannedResponses"></div>
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
-                    <button id="sendButton">Send</button>                                                                                       
+                    <button id="sendButton">&#9658;</button> <!-- Use a play icon for the send button -->
                 </div>                                                                                                                          
             </div>                                                                                                                              
         `;
