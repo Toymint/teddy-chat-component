@@ -291,10 +291,11 @@ class ChatBot extends HTMLElement {
 
             if (encodedText) {
               const decodedText = atob(encodedText);
+              const decodedResponse = JSON.parse(decodedText);
               console.log(decodedText);
               const assistantMessage = document.createElement('div');
               assistantMessage.className = 'message assistant';
-              assistantMessage.textContent = decodedText;
+              assistantMessage.textContent = decodedResponse.response.text;
               this.chatBody.appendChild(assistantMessage);
               this.chatBody.scrollTop = this.chatBody.scrollHeight;
             }
