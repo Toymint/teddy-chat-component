@@ -220,6 +220,7 @@ class ChatBot extends HTMLElement {
     this.sendButton.addEventListener('click', () => this.sendMessage());
     this.expandBtn = this.shadowRoot.getElementById('expandBtn');
     this.expandBtn.addEventListener('click', () => this.toggleExpand());
+    this.closeBtn = this.shadowRoot.getElementById('closeBtn');
     this.closeBtn.addEventListener('click', () => this.toggleChat());
 
     this.chatInput.addEventListener('keydown', (event) => {
