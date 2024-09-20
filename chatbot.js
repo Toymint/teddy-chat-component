@@ -298,6 +298,19 @@ class ChatBot extends HTMLElement {
               assistantMessage.textContent = decodedResponse.response.text;
               this.chatBody.appendChild(assistantMessage);
               this.chatBody.scrollTop = this.chatBody.scrollHeight;
+
+              // Update pre-canned responses
+              const preCannedResponsesContainer = this.shadowRoot.getElementById('preCannedResponses');
+              preCannedResponsesContainer.innerHTML = ''; // Clear existing buttons
+              decodedResponse.response.nextPrompts.forEach((prompt) => {
+                const button = document.createElement('button');
+                button.textContent = prompt;
+                button.addEventListener('click', () => {
+                  this.chatInput.value = prompt;
+                  this.sendMessage();
+                });
+                preCannedResponsesContainer.appendChild(button);
+              });
             }
           });
         })
