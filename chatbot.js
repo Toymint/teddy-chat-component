@@ -7,6 +7,9 @@ class ChatBot extends HTMLElement {
     const primaryColor = this.getAttribute('primary-color') || '#007bff';
     const secondaryColor = this.getAttribute('secondary-color') || '#ffffff';
 
+    // Get experience ID from attribute
+    this.experienceId = this.getAttribute('experience') || '66c8cd6f8619437fdb540eee';
+
     // Create the template for the chat component
     const template = document.createElement('template');
     template.innerHTML = `                                                                                                                  
