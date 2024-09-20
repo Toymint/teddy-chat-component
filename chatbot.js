@@ -23,29 +23,48 @@ class ChatBot extends HTMLElement {
                     font-size: 24px;                                                                                                            
                     cursor: pointer;                                                                                                            
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                                                                                   
-                }                                                                                                                               
-                                                                                                                                                
-                /* Styles for the chat window */                                                                                                
-                .chat-window {                                                                                                                  
-                    position: fixed;                                                                                                            
-                    bottom: 90px;                                                                                                               
-                    right: 20px;                                                                                                                
-                    width: 300px;                                                                                                               
-                    max-height: 400px;                                                                                                          
-                    background-color: white;                                                                                                    
-                    border: 1px solid #ccc;                                                                                                     
-                    border-radius: 8px;                                                                                                         
-                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);                                                                                   
-                    display: none;                                                                                                              
-                    flex-direction: column;                                                                                                     
-                }                                                                                                                               
-                                                                                                                                                
-                .chat-header {                                                                                                                  
-                    background-color: #007bff;                                                                                                  
-                    color: white;                                                                                                               
-                    padding: 10px;                                                                                                              
-                    border-top-left-radius: 8px;                                                                                                
-                    border-top-right-radius: 8px;                                                                                               
+                }
+
+                /* Styles for the chat window */
+                .chat-window {
+                    position: fixed;
+                    bottom: 90px;
+                    right: 20px;
+                    width: 300px;
+                    height: 40vh;
+                    background-color: white;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                    display: none;
+                    flex-direction: column;
+                }
+
+                @media (max-width: 768px) {
+                    .chat-window {
+                        width: 100%;
+                        height: 100%;
+                        bottom: 0;
+                        right: 0;
+                        border-radius: 0;
+                    }
+                }
+
+                .chat-header {
+                    background-color: #007bff;
+                    color: white;
+                    padding: 10px;
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                .close-btn {
+                    cursor: pointer;
+                    font-size: 18px;
+                }
                 }                                                                                                                               
                                                                                                                                                 
                 .chat-body {                                                                                                                    
@@ -91,7 +110,10 @@ class ChatBot extends HTMLElement {
             </style>                                                                                                                            
             <div class="fab" id="fab">+</div>                                                                                                   
             <div class="chat-window" id="chatWindow">                                                                                           
-                <div class="chat-header">Chatbot</div>                                                                                          
+                <div class="chat-header">
+                    <span>Chatbot</span>
+                    <span class="close-btn" id="closeBtn">&times;</span>
+                </div>
                 <div class="chat-body" id="chatBody">                                                                                           
                     <div class="message assistant">Hello! How can I assist you today?</div>                                                     
                 </div>                                                                                                                          
@@ -112,6 +134,8 @@ class ChatBot extends HTMLElement {
 
     this.fab.addEventListener('click', () => this.toggleChat());
     this.sendButton.addEventListener('click', () => this.sendMessage());
+    this.closeBtn = this.shadowRoot.getElementById('closeBtn');
+    this.closeBtn.addEventListener('click', () => this.toggleChat());
   }
 
   toggleChat() {
