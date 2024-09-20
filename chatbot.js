@@ -52,7 +52,14 @@ class ChatBot extends HTMLElement {
     this.expandBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.closeBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
-    this.chatBody.addEventListener('click', () => this.chatInput.blur()); // Hide keyboard on mobile when clicking chat area
+    this.chatBody.addEventListener('click', () => {
+      if (this.isMobileDevice()) this.chatInput.blur(); // Hide keyboard on mobile when clicking chat area
+    });
+  }
+
+  // Utility function to check if the device is mobile
+  isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
   }
 
   // Toggles the mute state of the audio
@@ -455,7 +462,7 @@ class ChatBot extends HTMLElement {
       .catch((error) => this.handleError(error));
 
     this.chatInput.value = '';
-    this.chatInput.blur(); // Hide keyboard on mobile after sending a message
+    if (this.isMobileDevice()) this.chatInput.blur(); // Hide keyboard on mobile after sending a message
     this.chatInput.focus();
   }
 
