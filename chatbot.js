@@ -3,6 +3,10 @@ class ChatBot extends HTMLElement {
     super();
     this.attachShadow({ mode: 'open' });
 
+    // Get color scheme from attributes
+    const primaryColor = this.getAttribute('primary-color') || '#007bff';
+    const secondaryColor = this.getAttribute('secondary-color') || '#ffffff';
+
     // Create the template for the chat component
     const template = document.createElement('template');
     template.innerHTML = `                                                                                                                  
@@ -14,12 +18,12 @@ class ChatBot extends HTMLElement {
                     right: 20px;
                     width: 56px;
                     height: 56px;
-                    background-color: #007bff;
+                    background-color: ${primaryColor};
                     border-radius: 50%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    color: white;
+                    color: ${secondaryColor};
                     font-size: 20px;
                     cursor: pointer;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -32,7 +36,7 @@ class ChatBot extends HTMLElement {
                     right: 20px;
                     width: 320px;
                     height: 80vh;
-                    background-color: white;
+                    background-color: ${secondaryColor};
                     border: 1px solid #ddd;
                     border-radius: 12px;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -54,7 +58,7 @@ class ChatBot extends HTMLElement {
                 }
 
                 .chat-header {
-                    background-color: #007bff;
+                    background-color: ${primaryColor};
                     color: white;
                     padding: 10px;
                     border-top-left-radius: 8px;
