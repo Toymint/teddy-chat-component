@@ -92,16 +92,16 @@ class ChatBot extends HTMLElement {
                                                                                                                                           
                                                                                                                                                 
                 .video-container {
+                    background: black;
                     width: 100%;
                     position: relative;
-                    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-                    height: 0;
+                    height: 25vh;
                     overflow: hidden;
                 }
 
                 .video-container.fullscreen {
                     video {
-                      height: 20vh; /* Limit height to 20vh in full-screen mode */
+                      height: 25vh; /* Limit height to 20vh in full-screen mode */
                     }
                 }
 
@@ -111,6 +111,7 @@ class ChatBot extends HTMLElement {
                     left: 0;
                     width: 100%;
                     height: 100%;
+                    object-fit: cover;
                 }
                 .chat-body {
                     flex-grow: 1;
