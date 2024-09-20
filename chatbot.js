@@ -207,11 +207,13 @@ class ChatBot extends HTMLElement {
         this.sendMessage();
       }
     });
+    this.isInitialized = false;
   }
 
   toggleChat() {
     this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
-    if (this.chatWindow.style.display === 'flex') {
+    if (this.chatWindow.style.display === 'flex' && !this.isInitialized) {
+      this.isInitialized = true;
       const experienceUrl = `https://teddy.chat/api/experiences/${this.experienceId}`;
 
       fetch(experienceUrl)
