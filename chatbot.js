@@ -1,9 +1,9 @@
 /**
  * ChatBot Component
- * 
+ *
  * This JavaScript file defines a custom HTML element <chat-bot> that provides an interactive chat interface.
  * The ChatBot component is designed to be embedded in web pages, offering a chat experience with a virtual assistant.
- * 
+ *
  * Key Features:
  * - Customizable appearance with primary and secondary colors.
  * - Responsive design that adapts to different screen sizes.
@@ -12,14 +12,14 @@
  * - Dynamic message handling with user and assistant messages.
  * - Error handling and retry mechanism for message sending.
  * - Typing indicator to show when the assistant is responding.
- * 
+ *
  * Usage:
  * Include this script in your HTML and add the <chat-bot> element with the necessary attributes:
  * - primary-color: The primary color for the chat interface.
  * - secondary-color: The secondary color for the chat interface.
  * - experience: The experience ID for fetching assistant data.
  * - assistant: The name of the assistant to interact with.
- * 
+ *
  * Example:
  * <chat-bot primary-color="#007bff" secondary-color="#f0f0f0" experience="66c8cd6f8619437fdb540eee" assistant="nfp"></chat-bot>
  */
@@ -292,7 +292,7 @@ class ChatBot extends HTMLElement {
           <div class="chat-header" id="chatHeader" role="heading" aria-level="1">
               <span>Teddy Chat</span>
               <span class="header-spacer"></span>
-              <span class="mute-btn" id="muteBtn" role="button" aria-label="Mute audio" tabindex="0">&#x1F507;</span>
+              <span class="mute-btn" id="muteBtn" role="button" aria-label="Mute audio" tabindex="0">🔊</span>
               <span class="expand-btn" id="expandBtn" role="button" aria-label="Expand chat" tabindex="0">&#x26F6;</span>
               <span class="close-btn" id="closeBtn" role="button" aria-label="Close chat" tabindex="0">&times;</span>
           </div>
