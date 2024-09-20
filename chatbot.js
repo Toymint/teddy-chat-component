@@ -67,7 +67,7 @@ class ChatBot extends HTMLElement {
           flex-direction: column;
           font-family: 'Open Sans', sans-serif;
           display: none;
-          font-size: 15px;
+          font-size: 14px;
       }
       .chat-window.fullscreen {
           height: 90vh;
@@ -153,7 +153,7 @@ class ChatBot extends HTMLElement {
           border: 1px solid #ccc;
           border-radius: 4px;
           cursor: pointer;
-          font-size: 16px;
+          font-size: 14px;
       }
       .chat-footer {
           display: flex;
