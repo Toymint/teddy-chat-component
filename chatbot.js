@@ -31,7 +31,7 @@ class ChatBot extends HTMLElement {
                     bottom: 90px;
                     right: 20px;
                     width: 320px;
-                    height: 50vh;
+                    height: 80vh;
                     background-color: white;
                     border: 1px solid #ddd;
                     border-radius: 12px;
