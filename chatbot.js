@@ -49,6 +49,20 @@ class ChatBot extends HTMLElement {
     this.isMessageSending = false;
   }
 
+  // Called when the element is removed from the DOM
+  disconnectedCallback() {
+    this.removeEventListeners();
+  }
+
+  // Removes event listeners for user interactions with the chat bot
+  removeEventListeners() {
+    this.fab.removeEventListener('click', this.toggleChat);
+    this.sendButton.removeEventListener('click', this.sendMessage);
+    this.expandBtn.removeEventListener('click', this.toggleExpand);
+    this.closeBtn.removeEventListener('click', this.toggleChat);
+    this.chatInput.removeEventListener('keydown', this.handleKeyDown);
+  }
+
   // Creates the HTML template for the chat bot component
   createTemplate() {
     const template = document.createElement('template');
@@ -279,13 +293,16 @@ class ChatBot extends HTMLElement {
 
   // Adds event listeners for user interactions with the chat bot
   addEventListeners() {
-    this.fab.addEventListener('click', () => this.toggleChat());
-    this.sendButton.addEventListener('click', () => this.sendMessage());
-    this.expandBtn.addEventListener('click', () => this.toggleExpand());
-    this.closeBtn.addEventListener('click', () => this.toggleChat());
-    this.chatInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') this.sendMessage();
-    });
+    this.fab.addEventListener('click', this.toggleChat.bind(this));
+    this.sendButton.addEventListener('click', this.sendMessage.bind(this));
+    this.expandBtn.addEventListener('click', this.toggleExpand.bind(this));
+    this.closeBtn.addEventListener('click', this.toggleChat.bind(this));
+    this.chatInput.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  // Handles keydown events for the chat input
+  handleKeyDown(event) {
+    if (event.key === 'Enter') this.sendMessage();
   }
 
   // Toggles the chat window between expanded and normal size
