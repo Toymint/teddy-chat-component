@@ -122,6 +122,8 @@ class ChatBot extends HTMLElement {
                     border-radius: 4px;
                     cursor: pointer;
                 }
+                
+                .chat-footer {
                     display: flex;
                     padding: 10px;
                     border-top: 1px solid #ccc;
