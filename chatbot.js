@@ -149,15 +149,31 @@ class ChatBot extends HTMLElement {
                                                                                                                                                 
                 .message {                                                                                                                      
                     margin-bottom: 10px;                                                                                                        
-                }                                                                                                                               
-                                                                                                                                                
-                .message.user {                                                                                                                 
-                    text-align: right;                                                                                                          
-                }                                                                                                                               
-                                                                                                                                                
-                .message.assistant {                                                                                                            
-                    text-align: left;                                                                                                           
-                }                                                                                                                               
+                }
+
+                .message {
+                    max-width: 70%;
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    border-radius: 20px;
+                    position: relative;
+                    display: inline-block;
+                    clear: both;
+                }
+
+                .message.user {
+                    background-color: #007aff;
+                    color: white;
+                    align-self: flex-end;
+                    border-bottom-right-radius: 0;
+                }
+
+                .message.assistant {
+                    background-color: #e5e5ea;
+                    color: black;
+                    align-self: flex-start;
+                    border-bottom-left-radius: 0;
+                }
             </style>                                                                                                                            
             <div class="fab" id="fab">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
