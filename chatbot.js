@@ -36,6 +36,12 @@ class ChatBot extends HTMLElement {
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
                 }
 
+                .expand-btn {
+                    cursor: pointer;
+                    font-size: 18px;
+                    margin-left: 10px;
+                }
+
                 /* Styles for the chat window */
                 .chat-window {
                     position: fixed;
@@ -183,6 +189,7 @@ class ChatBot extends HTMLElement {
             <div class="chat-window" id="chatWindow">                                                                                           
                 <div class="chat-header">
                     <span>Chatbot</span>
+                    <span class="expand-btn" id="expandBtn">&#x26F6;</span>
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
                 <div class="video-container">
@@ -211,7 +218,8 @@ class ChatBot extends HTMLElement {
 
     this.fab.addEventListener('click', () => this.toggleChat());
     this.sendButton.addEventListener('click', () => this.sendMessage());
-    this.closeBtn = this.shadowRoot.getElementById('closeBtn');
+    this.expandBtn = this.shadowRoot.getElementById('expandBtn');
+    this.expandBtn.addEventListener('click', () => this.toggleExpand());
     this.closeBtn.addEventListener('click', () => this.toggleChat());
 
     this.chatInput.addEventListener('keydown', (event) => {
@@ -221,6 +229,20 @@ class ChatBot extends HTMLElement {
     });
     this.isInitialized = false;
     this.sessionId = this.generateUUID();
+  }
+
+  toggleExpand() {
+    if (this.chatWindow.style.width === '100%') {
+      this.chatWindow.style.width = '320px';
+      this.chatWindow.style.height = '80vh';
+      this.chatWindow.style.bottom = '90px';
+      this.chatWindow.style.right = '20px';
+    } else {
+      this.chatWindow.style.width = '100%';
+      this.chatWindow.style.height = '100%';
+      this.chatWindow.style.bottom = '0';
+      this.chatWindow.style.right = '0';
+    }
   }
 
   toggleChat() {
