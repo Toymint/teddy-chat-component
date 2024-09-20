@@ -154,7 +154,6 @@ class ChatBot extends HTMLElement {
                     <video src="" autoplay loop muted playsinline></video>
                 </div>
                 <div class="chat-body" id="chatBody">
-                    <div class="message assistant">Hello! How can I assist you today?</div>                                                     
                 </div>                                                                                                                          
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
@@ -198,6 +197,10 @@ class ChatBot extends HTMLElement {
             console.log('Assistant Found:', assistant);
             const videoElement = this.shadowRoot.querySelector('.video-container video');
             videoElement.src = `https://teddy.chat${assistant.initialVideo}`;
+            const initialMessage = document.createElement('div');
+            initialMessage.className = 'message assistant';
+            initialMessage.textContent = assistant.initialPrompt;
+            this.chatBody.appendChild(initialMessage);
           } else {
             console.error('Assistant not found');
           }
