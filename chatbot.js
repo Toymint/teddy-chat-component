@@ -151,7 +151,7 @@ class ChatBot extends HTMLElement {
                     flex: 0 0 auto;
                     margin-right: 10px;
                     padding: 10px 15px; /* Increase padding for better visibility */
-                    background-color: #f0f0f0;
+                    background-color: #e0e0e0; /* Lighter background color */
                     color: #333;
                     border: 1px solid #ccc;
                     border-radius: 4px;
