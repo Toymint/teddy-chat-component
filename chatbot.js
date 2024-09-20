@@ -1,3 +1,5 @@
+let assistant;
+
 class ChatBot extends HTMLElement {
   constructor() {
     super();
@@ -282,7 +284,7 @@ class ChatBot extends HTMLElement {
   }
 
   setupAssistant(data) {
-    const assistant = data.assistants.find((a) => a.name === this.assistantName);
+    assistant = data.assistants.find((a) => a.name === this.assistantName);
     if (assistant) {
       this.setVideoSource(assistant.initialVideo);
       this.addMessage('assistant', assistant.initialPrompt);
@@ -337,7 +339,7 @@ class ChatBot extends HTMLElement {
       experienceId: this.experienceId,
       experienceName: this.assistantName,
       message: messageText,
-      assistant: 'asst_l5QYyTPEAIOi6P99FpWWZcnO',
+      assistant: assistant.assistantId,
     };
 
     fetch(`https://teddy.chat/api/${this.sessionId}/chat`, {
