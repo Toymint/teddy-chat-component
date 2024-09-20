@@ -12,7 +12,8 @@ class ChatBot extends HTMLElement {
 
     // Create the template for the chat component
     const template = document.createElement('template');
-    template.innerHTML = `                                                                                                                  
+    template.innerHTML = `        
+
             <style>                                                                                                                             
                 /* Styles for the FAB button */
                 .fab {
@@ -183,24 +184,6 @@ class ChatBot extends HTMLElement {
   toggleChat() {
     this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
     if (this.chatWindow.style.display === 'flex') {
-      const randomUuid = '123e4567-e89b-12d3-a456-426614174000'; // Replace with actual UUID generation logic
-      const requestBody = {
-        assistant: 'randomAssistantId',
-        experienceId: this.experienceId,
-        experienceName: 'randomExperienceName'
-      };
-
-      fetch(`https://teddy.chat/api/${randomUuid}/chat`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestBody)
-      })
-      .then(response => response.json())
-      .then(data => console.log('Success:', data))
-      .catch((error) => console.error('Error:', error));
-
       this.chatInput.focus();
     }
   }
