@@ -1,6 +1,6 @@
 {
   "name": "chatbot-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A chatbot interface with accessibility and audio playback features.",
   "main": "chatbot.js",
   "scripts": {
