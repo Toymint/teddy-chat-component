@@ -151,7 +151,7 @@ class ChatBot extends HTMLElement {
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
                 <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="" frameborder="0" allow="autoplay; loop" muted></iframe>
                 </div>
                 <div class="chat-body" id="chatBody">
                     <div class="message assistant">Hello! How can I assist you today?</div>                                                     
@@ -197,7 +197,7 @@ class ChatBot extends HTMLElement {
           if (assistant) {
             console.log('Assistant Found:', assistant);
             const videoIframe = this.shadowRoot.querySelector('.video-container iframe');
-            videoIframe.src = `https://teddy.chat${assistant.initialVideo}`;
+            videoIframe.src = `https://teddy.chat${assistant.initialVideo}?autoplay=1&loop=1&mute=1`;
           } else { 
             console.error('Assistant not found');
           }
