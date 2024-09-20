@@ -65,7 +65,7 @@ class ChatBot extends HTMLElement {
           border-radius: 12px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
           flex-direction: column;
-          font-family: 'Roboto', sans-serif;
+          font-family: 'Open Sans', sans-serif;
           display: none;
           font-size: 15px;
       }
