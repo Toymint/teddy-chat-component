@@ -202,6 +202,7 @@ class ChatBot extends HTMLElement {
       }
     });
     this.isInitialized = false;
+    this.sessionId = this.generateUUID();
   }
 
   toggleChat() {
@@ -241,6 +242,14 @@ class ChatBot extends HTMLElement {
     }
   }
 
+  generateUUID() {
+    // Generate a random UUID
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   sendMessage() {
     const messageText = this.chatInput.value.trim();
 
@@ -250,7 +259,27 @@ class ChatBot extends HTMLElement {
       userMessage.textContent = messageText;
       this.chatBody.appendChild(userMessage);
 
-      this.chatInput.value = '';
+      const payload = {
+        experienceId: this.experienceId,
+        experienceName: this.assistantName,
+        message: messageText,
+        assistant: 'asst_l5QYyTPEAIOi6P99FpWWZcnO' // Replace with actual assistant ID if needed
+      };
+
+      fetch(`https://teddy.chat/api/${this.sessionId}/chat`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Message sent successfully:', data);
+      })
+      .catch(error => {
+        console.error('Error sending message:', error);
+      });
       this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
   }
