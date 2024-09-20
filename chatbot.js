@@ -149,7 +149,7 @@ class ChatBot extends HTMLElement {
           margin-right: 10px;
           padding: 10px 15px;
           background-color: #e0e0e0;
-          color: #444;
+          color: #555;
           border: 1px solid #ccc;
           border-radius: 4px;
           cursor: pointer;
@@ -196,7 +196,7 @@ class ChatBot extends HTMLElement {
       }
       .message.assistant {
           background-color: #e5e5ea;
-          color: #333;
+          color: #555;
           align-self: flex-start;
           border-bottom-left-radius: 0;
       }
