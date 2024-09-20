@@ -155,10 +155,6 @@ class ChatBot extends HTMLElement {
       this.chatInput.focus();
     }
 
-  toggleChat() {
-    this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
-  }
-
   sendMessage() {
     const messageText = this.chatInput.value.trim();
 
