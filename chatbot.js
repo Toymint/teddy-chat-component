@@ -207,6 +207,8 @@ class ChatBot extends HTMLElement {
     this.chatBody = this.shadowRoot.getElementById('chatBody');
     this.sendButton = this.shadowRoot.getElementById('sendButton');
 
+    this.lastMessageText = ''; // Store the last message text
+
     this.fab.addEventListener('click', () => this.toggleChat());
     this.sendButton.addEventListener('click', () => this.sendMessage());
     this.closeBtn = this.shadowRoot.getElementById('closeBtn');
@@ -275,6 +277,8 @@ class ChatBot extends HTMLElement {
       userMessage.className = 'message user';
       userMessage.textContent = messageText;
       this.chatBody.appendChild(userMessage);
+
+      this.lastMessageText = messageText; // Store the last message
 
       const payload = {
         experienceId: this.experienceId,
@@ -354,8 +358,10 @@ class ChatBot extends HTMLElement {
 
           const retryButton = document.createElement('button');
           retryButton.textContent = 'Retry';
-          retryButton.addEventListener('click', () => {
+          retryButton.addEventListener('click', (event) => {
+            this.chatInput.value = this.lastMessageText; // Set the input to the last message
             this.sendMessage();
+            event.target.style.display = 'none'; // Hide the retry button
           });
           this.chatBody.appendChild(retryButton);
 
