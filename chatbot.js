@@ -446,7 +446,11 @@ class ChatBot extends HTMLElement {
     this.isMessageSending = false;
     this.showTypingIndicator(false);
     const textResponse = response.headers.get('X-Text-Response');
-    return response.blob().then(() => {
+    return response.blob().then((audioBlob) => {
+      const audioUrl = URL.createObjectURL(audioBlob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+
       if (textResponse) {
         const decodedResponse = JSON.parse(atob(textResponse));
         this.addAssistantMessage(decodedResponse.response.text);
