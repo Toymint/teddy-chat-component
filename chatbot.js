@@ -196,7 +196,9 @@ class ChatBot extends HTMLElement {
           const assistant = data.assistants.find(a => a.name === this.assistantName);
           if (assistant) {
             console.log('Assistant Found:', assistant);
-          } else {
+            const videoIframe = this.shadowRoot.querySelector('.video-container iframe');
+            videoIframe.src = `https://teddy.chat${assistant.initialVideo}`;
+          } else { 
             console.error('Assistant not found');
           }
         })
