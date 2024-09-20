@@ -132,6 +132,7 @@ class ChatBot extends HTMLElement {
 
     this.fab = this.shadowRoot.getElementById('fab');
     this.chatWindow = this.shadowRoot.getElementById('chatWindow');
+    this.chatWindow.style.display = 'none';
     this.chatInput = this.shadowRoot.getElementById('chatInput');
     this.chatBody = this.shadowRoot.getElementById('chatBody');
     this.sendButton = this.shadowRoot.getElementById('sendButton');
