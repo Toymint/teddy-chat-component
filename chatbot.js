@@ -46,6 +46,7 @@ class ChatBot extends HTMLElement {
     this.isInitialized = false;
     this.sessionId = this.generateUUID();
     this.lastMessageText = '';
+    this.isMessageSending = false;
   }
 
   // Creates the HTML template for the chat bot component
@@ -375,6 +376,8 @@ class ChatBot extends HTMLElement {
   sendMessage() {
     const messageText = this.chatInput.value.trim();
     if (!messageText) return;
+    if (!messageText || this.isMessageSending) return;
+    this.isMessageSending = true;
     this.showTypingIndicator(true);
 
     this.addMessage('user', messageText);
@@ -401,6 +404,7 @@ class ChatBot extends HTMLElement {
 
   // Handles the response from the assistant and updates the chat
   handleResponse(response) {
+    this.isMessageSending = false;
     this.showTypingIndicator(false);
     const textResponse = response.headers.get('X-Text-Response');
     return response.blob().then(() => {
