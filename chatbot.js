@@ -9,6 +9,7 @@ class ChatBot extends HTMLElement {
     this.secondaryColor = this.getAttribute('secondary-color') || '#ffffff';
     this.experienceId = this.getAttribute('experience') || '';
     this.assistantName = this.getAttribute('assistant') || '';
+    this.assistantId = '';
 
     this.shadowRoot.appendChild(this.createTemplate().content.cloneNode(true));
 
@@ -284,11 +285,11 @@ class ChatBot extends HTMLElement {
   }
 
   setupAssistant(data) {
-    assistant = data.assistants.find((a) => a.name === this.assistantName);
-    if (assistant) {
-      this.setVideoSource(assistant.initialVideo);
-      this.addMessage('assistant', assistant.initialPrompt);
-      this.setupPreCannedResponses(assistant.initialResponses);
+    this.assistant = data.assistants.find((a) => a.name === this.assistantName);
+    if (this.assistant) {
+      this.setVideoSource(this.assistant.initialVideo);
+      this.addMessage('assistant', this.assistant.initialPrompt);
+      this.setupPreCannedResponses(this.assistant.initialResponses);
     }
   }
 
@@ -339,7 +340,7 @@ class ChatBot extends HTMLElement {
       experienceId: this.experienceId,
       experienceName: this.assistantName,
       message: messageText,
-      assistant: assistant.assistantId,
+      assistant: this.assistant.assistantId,
     };
 
     fetch(`https://teddy.chat/api/${this.sessionId}/chat`, {
