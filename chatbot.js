@@ -273,6 +273,25 @@ class ChatBot extends HTMLElement {
         },
         body: JSON.stringify(payload)
       })
+      .then(response => {
+        // Extract audio from response body
+        return response.blob().then(blob => {
+          const audioUrl = URL.createObjectURL(blob);
+          const audio = new Audio(audioUrl);
+          audio.play();
+
+          // Decode and display the text response from the header
+          const encodedText = response.headers.get('x-text-response');
+          if (encodedText) {
+            const decodedText = atob(encodedText);
+            const assistantMessage = document.createElement('div');
+            assistantMessage.className = 'message assistant';
+            assistantMessage.textContent = decodedText;
+            this.chatBody.appendChild(assistantMessage);
+            this.chatBody.scrollTop = this.chatBody.scrollHeight;
+          }
+        });
+      })
       .then(response => response.json())
       .then(data => {
         console.log('Message sent successfully:', data);
