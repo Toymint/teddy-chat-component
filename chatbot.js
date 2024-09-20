@@ -241,11 +241,12 @@ class ChatBot extends HTMLElement {
       }
       .chat-footer input {
           flex: 1;
-          padding: 10px 40px 10px 10px;
+          padding: 15px 40px 15px 15px; /* Increase padding for a larger input area */
           border: none;
           border-radius: 0;
           width: 100%;
           box-sizing: border-box;
+          font-size: 16px; /* Increase font size for better readability */
       }
       .chat-footer button {
           position: absolute;
