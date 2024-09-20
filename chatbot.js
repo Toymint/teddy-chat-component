@@ -34,7 +34,6 @@ class ChatBot extends HTMLElement {
                     font-size: 20px;
                     cursor: pointer;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add drop shadow */
                 }
 
                 .expand-btn {
@@ -99,11 +98,12 @@ class ChatBot extends HTMLElement {
                                                                                                                                                 
                 .video-container {
                     background: black;                                                                                    
-     width: 100%;                                                                                          
-     position: relative;                                                                                   
-     height: 25vh; /* Set a fixed height */                                                                
-     overflow: hidden;                                                                                     
-     flex-shrink: 0;
+                    width: 100%;                                                                                          
+                    position: relative;                                                                                   
+                    height: 25vh; /* Set a fixed height */                                                                
+                    overflow: hidden;                                                                                     
+                    flex-shrink: 0;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add drop shadow */
                 }
 
                 .video-container.fullscreen {
