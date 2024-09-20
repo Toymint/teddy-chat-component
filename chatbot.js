@@ -151,7 +151,7 @@ class ChatBot extends HTMLElement {
                     <span class="close-btn" id="closeBtn">&times;</span>
                 </div>
                 <div class="video-container">
-                    <iframe src="" frameborder="0" allow="autoplay; loop" muted controls="0"></iframe>
+                    <iframe src="" frameborder="0" allow="autoplay; loop; controls; muted;" muted controls="0"></iframe>
                 </div>
                 <div class="chat-body" id="chatBody">
                     <div class="message assistant">Hello! How can I assist you today?</div>                                                     
@@ -188,17 +188,17 @@ class ChatBot extends HTMLElement {
     this.chatWindow.style.display = this.chatWindow.style.display === 'none' ? 'flex' : 'none';
     if (this.chatWindow.style.display === 'flex') {
       const experienceUrl = `https://teddy.chat/api/experiences/${this.experienceId}`;
-      
+
       fetch(experienceUrl)
-        .then(response => response.json())
-        .then(data => {
+        .then((response) => response.json())
+        .then((data) => {
           console.log('Experience Data:', data);
-          const assistant = data.assistants.find(a => a.name === this.assistantName);
+          const assistant = data.assistants.find((a) => a.name === this.assistantName);
           if (assistant) {
             console.log('Assistant Found:', assistant);
             const videoIframe = this.shadowRoot.querySelector('.video-container iframe');
-            videoIframe.src = `https://teddy.chat${assistant.initialVideo}?autoplay=1&loop=1&mute=1&controls=0`;
-          } else { 
+            videoIframe.src = `https://teddy.chat${assistant.initialVideo}`;
+          } else {
             console.error('Assistant not found');
           }
         })
