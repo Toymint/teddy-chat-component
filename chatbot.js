@@ -54,6 +54,13 @@ class ChatBot extends HTMLElement {
     this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
   }
 
+  // Toggles the mute state of the audio
+  toggleMute() {
+    if (this.currentAudio) {
+      this.currentAudio.muted = !this.currentAudio.muted;
+      this.muteBtn.textContent = this.currentAudio.muted ? '🔇' : '🔊';
+    }
+
   // Handles key press events for focusable elements
   handleKeyPress(event) {
     if (event.key === 'Enter') {
@@ -284,6 +291,7 @@ class ChatBot extends HTMLElement {
           <div class="chat-header" id="chatHeader" role="heading" aria-level="1">
               <span>Teddy Chat</span>
               <span class="header-spacer"></span>
+              <span class="mute-btn" id="muteBtn" role="button" aria-label="Mute audio" tabindex="0">&#x1F507;</span>
               <span class="expand-btn" id="expandBtn" role="button" aria-label="Expand chat" tabindex="0">&#x26F6;</span>
               <span class="close-btn" id="closeBtn" role="button" aria-label="Close chat" tabindex="0">&times;</span>
           </div>
@@ -309,6 +317,7 @@ class ChatBot extends HTMLElement {
     this.chatBody = this.shadowRoot.getElementById('chatBody');
     this.sendButton = this.shadowRoot.getElementById('sendButton');
     this.videoContainer = this.shadowRoot.querySelector('.video-container');
+    this.muteBtn = this.shadowRoot.getElementById('muteBtn');
     this.expandBtn = this.shadowRoot.getElementById('expandBtn');
     this.closeBtn = this.shadowRoot.getElementById('closeBtn');
   }
@@ -317,6 +326,7 @@ class ChatBot extends HTMLElement {
   addEventListeners() {
     this.fab.addEventListener('click', this.toggleChat.bind(this));
     this.sendButton.addEventListener('click', this.sendMessage.bind(this));
+    this.muteBtn.addEventListener('click', this.toggleMute.bind(this));
     this.expandBtn.addEventListener('click', this.toggleExpand.bind(this));
     this.closeBtn.addEventListener('click', this.toggleChat.bind(this));
     this.chatInput.addEventListener('keydown', this.handleKeyDown.bind(this));
