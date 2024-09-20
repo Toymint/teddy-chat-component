@@ -52,6 +52,7 @@ class ChatBot extends HTMLElement {
     this.expandBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.closeBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
+    this.chatBody.addEventListener('click', () => this.chatInput.blur()); // Hide keyboard on mobile when clicking chat area
   }
 
   // Toggles the mute state of the audio
@@ -437,6 +438,7 @@ class ChatBot extends HTMLElement {
     this.showTypingIndicator(true);
 
     this.addMessage('user', messageText);
+    this.chatInput.blur(); // Hide keyboard on mobile after sending a message
     this.lastMessageText = messageText;
 
     const payload = {
