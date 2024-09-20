@@ -10,6 +10,9 @@ class ChatBot extends HTMLElement {
     // Get experience ID from attribute
     this.experienceId = this.getAttribute('experience') || '66c8cd6f8619437fdb540eee';
 
+    // Get assistant name from attribute
+    this.assistantName = this.getAttribute('assistant') || '';
+
     // Create the template for the chat component
     const template = document.createElement('template');
     template.innerHTML = `        
@@ -188,7 +191,15 @@ class ChatBot extends HTMLElement {
       
       fetch(experienceUrl)
         .then(response => response.json())
-        .then(data => console.log('Experience Data:', data))
+        .then(data => {
+          console.log('Experience Data:', data);
+          const assistant = data.assistants.find(a => a.name === this.assistantName);
+          if (assistant) {
+            console.log('Assistant Found:', assistant);
+          } else {
+            console.error('Assistant not found');
+          }
+        })
         .catch((error) => console.error('Error fetching experience:', error));
 
       this.chatInput.focus();
