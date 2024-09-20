@@ -1,6 +1,7 @@
 let assistant;
 
 class ChatBot extends HTMLElement {
+  // Constructor to initialize the ChatBot component and set up initial properties
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -21,6 +22,7 @@ class ChatBot extends HTMLElement {
     this.lastMessageText = '';
   }
 
+  // Creates the HTML template for the chat bot component
   createTemplate() {
     const template = document.createElement('template');
     template.innerHTML = `
@@ -33,6 +35,7 @@ class ChatBot extends HTMLElement {
     return template;
   }
 
+  // Returns the CSS styles for the chat bot component
   getStyles() {
     return `
       .fab {
@@ -206,6 +209,7 @@ class ChatBot extends HTMLElement {
     `;
   }
 
+  // Returns the HTML structure for the chat bot component
   getHTML() {
     return `
       <div class="fab" id="fab">
@@ -234,6 +238,7 @@ class ChatBot extends HTMLElement {
     `;
   }
 
+  // Initializes DOM elements used in the chat bot component
   initializeElements() {
     this.fab = this.shadowRoot.getElementById('fab');
     this.chatWindow = this.shadowRoot.getElementById('chatWindow');
@@ -245,6 +250,7 @@ class ChatBot extends HTMLElement {
     this.closeBtn = this.shadowRoot.getElementById('closeBtn');
   }
 
+  // Adds event listeners for user interactions with the chat bot
   addEventListeners() {
     this.fab.addEventListener('click', () => this.toggleChat());
     this.sendButton.addEventListener('click', () => this.sendMessage());
@@ -255,6 +261,7 @@ class ChatBot extends HTMLElement {
     });
   }
 
+  // Toggles the chat window between expanded and normal size
   toggleExpand() {
     const isFullscreen = this.chatWindow.style.width === '100%';
     this.chatWindow.style.width = isFullscreen ? '320px' : '100%';
@@ -264,6 +271,7 @@ class ChatBot extends HTMLElement {
     this.videoContainer.classList.toggle('fullscreen', !isFullscreen);
   }
 
+  // Toggles the visibility of the chat window
   toggleChat() {
     console.log(this.chatWindow.style.display);
     const isHidden = this.chatWindow.style.display === 'none';
@@ -275,6 +283,7 @@ class ChatBot extends HTMLElement {
     }
   }
 
+  // Initializes the chat by fetching experience data and setting up the assistant
   initializeChat() {
     this.isInitialized = true;
     const experienceUrl = `https://teddy.chat/api/experiences/${this.experienceId}`;
@@ -287,6 +296,7 @@ class ChatBot extends HTMLElement {
     this.chatInput.focus();
   }
 
+  // Sets up the assistant with initial video, prompt, and responses
   setupAssistant(data) {
     this.assistant = data.assistants.find((a) => a.name === this.assistantName);
     if (this.assistant) {
@@ -296,11 +306,13 @@ class ChatBot extends HTMLElement {
     }
   }
 
+  // Sets the video source for the assistant's video container
   setVideoSource(videoPath) {
     const videoElement = this.shadowRoot.querySelector('.video-container video');
     videoElement.src = `https://teddy.chat${videoPath}`;
   }
 
+  // Adds a message to the chat body, either from the user or the assistant
   addMessage(type, text) {
     const message = document.createElement('div');
     message.className = `message ${type}`;
@@ -309,6 +321,7 @@ class ChatBot extends HTMLElement {
     this.chatBody.scrollTop = this.chatBody.scrollHeight;
   }
 
+  // Sets up pre-canned response buttons for quick user replies
   setupPreCannedResponses(responses) {
     const container = this.shadowRoot.getElementById('preCannedResponses');
     container.innerHTML = '';
@@ -323,6 +336,7 @@ class ChatBot extends HTMLElement {
     });
   }
 
+  // Generates a unique identifier for the chat session
   generateUUID() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       const r = (Math.random() * 16) | 0;
@@ -331,6 +345,7 @@ class ChatBot extends HTMLElement {
     });
   }
 
+  // Sends a message to the assistant and handles the response
   sendMessage() {
     const messageText = this.chatInput.value.trim();
     if (!messageText) return;
@@ -358,6 +373,7 @@ class ChatBot extends HTMLElement {
     this.chatInput.focus();
   }
 
+  // Handles the response from the assistant and updates the chat
   handleResponse(response) {
     this.showTypingIndicator(false);
     const textResponse = response.headers.get('X-Text-Response');
@@ -370,6 +386,7 @@ class ChatBot extends HTMLElement {
     });
   }
 
+  // Handles errors during message sending and provides feedback to the user
   handleError(error) {
     console.error('Error sending message:', error);
     this.showTypingIndicator(false);
@@ -377,6 +394,7 @@ class ChatBot extends HTMLElement {
     this.addRetryButton();
   }
 
+  // Adds a message from the assistant to the chat body, parsing any URLs
   addAssistantMessage(responseText) {
     const assistantMessage = document.createElement('div');
     assistantMessage.className = 'message assistant';
@@ -399,6 +417,7 @@ class ChatBot extends HTMLElement {
     this.chatBody.scrollTop = this.chatBody.scrollHeight;
   }
 
+  // Adds a retry button to the chat body for resending failed messages
   addRetryButton() {
     const retryButton = document.createElement('button');
     retryButton.textContent = 'Retry';
@@ -411,6 +430,7 @@ class ChatBot extends HTMLElement {
     this.chatBody.scrollTop = this.chatBody.scrollHeight;
   }
 
+  // Shows or hides the typing indicator based on the assistant's status
   showTypingIndicator(show) {
     const typingIndicator = this.shadowRoot.getElementById('typingIndicator');
     typingIndicator.style.display = show ? 'block' : 'none';
