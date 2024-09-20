@@ -154,6 +154,7 @@ class ChatBot extends HTMLElement {
     if (this.chatWindow.style.display === 'flex') {
       this.chatInput.focus();
     }
+  }
 
   sendMessage() {
     const messageText = this.chatInput.value.trim();
