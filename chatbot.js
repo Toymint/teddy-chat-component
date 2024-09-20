@@ -244,8 +244,9 @@ class ChatBot extends HTMLElement {
 
   generateUUID() {
     // Generate a random UUID
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      const r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+      const r = (Math.random() * 16) | 0,
+        v = c === 'x' ? r : (r & 0x3) | 0x8;
       return v.toString(16);
     });
   }
@@ -263,42 +264,45 @@ class ChatBot extends HTMLElement {
         experienceId: this.experienceId,
         experienceName: this.assistantName,
         message: messageText,
-        assistant: 'asst_l5QYyTPEAIOi6P99FpWWZcnO' // Replace with actual assistant ID if needed
+        assistant: 'asst_l5QYyTPEAIOi6P99FpWWZcnO', // Replace with actual assistant ID if needed
       };
 
       fetch(`https://teddy.chat/api/${this.sessionId}/chat`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       })
-      .then(response => {
-        // Extract audio from response body
-        return response.blob().then(blob => {
-          const audioUrl = URL.createObjectURL(blob);
-          const audio = new Audio(audioUrl);
-          audio.play();
+        .then((response) => {
+          console.log(response.headers);
+          const textResponse = response.headers.get('X-Text-Response');
+          console.log(textResponse);
+          // Extract audio from response body
+          return response.blob().then((blob) => {
+            /*
+            const audioUrl = URL.createObjectURL(blob);
+            const audio = new Audio(audioUrl);
+            audio.play();
+            */
 
-          // Decode and display the text response from the header
-          const encodedText = response.headers.get('x-text-response');
-          if (encodedText) {
-            const decodedText = atob(encodedText);
-            const assistantMessage = document.createElement('div');
-            assistantMessage.className = 'message assistant';
-            assistantMessage.textContent = decodedText;
-            this.chatBody.appendChild(assistantMessage);
-            this.chatBody.scrollTop = this.chatBody.scrollHeight;
-          }
+            // Decode and display the text response from the header
+            const encodedText = textResponse;
+
+            if (encodedText) {
+              const decodedText = atob(encodedText);
+              console.log(decodedText);
+              const assistantMessage = document.createElement('div');
+              assistantMessage.className = 'message assistant';
+              assistantMessage.textContent = decodedText;
+              this.chatBody.appendChild(assistantMessage);
+              this.chatBody.scrollTop = this.chatBody.scrollHeight;
+            }
+          });
+        })
+        .catch((error) => {
+          console.error('Error sending message:', error);
         });
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Message sent successfully:', data);
-      })
-      .catch(error => {
-        console.error('Error sending message:', error);
-      });
       this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
   }
