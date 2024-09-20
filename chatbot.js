@@ -104,7 +104,24 @@ class ChatBot extends HTMLElement {
                     flex-direction: column;
                 }
 
-                .chat-footer {
+                .pre-canned-responses {
+                    display: flex;
+                    overflow-x: auto;
+                    padding: 10px;
+                    border-top: 1px solid #ccc;
+                    white-space: nowrap;
+                }
+
+                .pre-canned-responses button {
+                    flex: 0 0 auto;
+                    margin-right: 10px;
+                    padding: 5px 10px;
+                    background-color: #f0f0f0;
+                    color: #333;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
                     display: flex;
                     padding: 10px;
                     border-top: 1px solid #ccc;
@@ -154,7 +171,14 @@ class ChatBot extends HTMLElement {
                     <video src="" autoplay loop muted playsinline></video>
                 </div>
                 <div class="chat-body" id="chatBody">
-                </div>                                                                                                                          
+                </div>
+                <div class="pre-canned-responses" id="preCannedResponses">
+                    <button>Response 1</button>
+                    <button>Response 2</button>
+                    <button>Response 3</button>
+                    <button>Response 4</button>
+                    <button>Response 5</button>
+                </div>
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
                     <button id="sendButton">Send</button>                                                                                       
