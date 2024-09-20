@@ -104,6 +104,7 @@ class ChatBot extends HTMLElement {
                     overflow: hidden;                                                                                     
                     flex-shrink: 0;
                     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add drop shadow */
+                    z-index: 99;
                 }
 
                 .video-container.fullscreen {
@@ -119,13 +120,14 @@ class ChatBot extends HTMLElement {
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    z-index: -1; /* Ensure the shadow is visible */
+                    z-index: 100; /* Ensure the shadow is visible */
                 }
                 .typing-indicator {
                     display: none;
                     font-style: italic;
                     color: #888;
                     margin-bottom: 10px;
+                    padding-left: 10px;
                 }
 
                 .chat-body {
@@ -226,7 +228,7 @@ class ChatBot extends HTMLElement {
                 </div>
                 <div class="chat-body" id="chatBody">
                 </div>
-                <div class="typing-indicator" id="typingIndicator">Chatbot is typing...</div>
+                <div class="typing-indicator" id="typingIndicator">Teddy Chat is typing...</div>
                 <div class="pre-canned-responses" id="preCannedResponses"></div>
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
