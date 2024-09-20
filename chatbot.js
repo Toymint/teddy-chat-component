@@ -53,7 +53,10 @@ class ChatBot extends HTMLElement {
     this.closeBtn.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.sendButton.addEventListener('keydown', this.handleKeyPress.bind(this));
     this.chatBody.addEventListener('click', () => {
-      if (this.isMobileDevice()) this.chatInput.blur(); // Hide keyboard on mobile when clicking chat area
+      if (this.isMobileDevice()) {
+        this.chatInput.focus(); // Ensure the input is focused
+        this.chatInput.blur();  // Then blur it to hide the keyboard
+      }
     });
   }
 
@@ -462,7 +465,10 @@ class ChatBot extends HTMLElement {
       .catch((error) => this.handleError(error));
 
     this.chatInput.value = '';
-    if (this.isMobileDevice()) this.chatInput.blur(); // Hide keyboard on mobile after sending a message
+    if (this.isMobileDevice()) {
+      this.chatInput.focus(); // Ensure the input is focused
+      this.chatInput.blur();  // Then blur it to hide the keyboard
+    }
     this.chatInput.focus();
   }
 
