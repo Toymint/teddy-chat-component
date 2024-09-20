@@ -174,13 +174,7 @@ class ChatBot extends HTMLElement {
                 </div>
                 <div class="chat-body" id="chatBody">
                 </div>
-                <div class="pre-canned-responses" id="preCannedResponses">
-                    <button>Response 1</button>
-                    <button>Response 2</button>
-                    <button>Response 3</button>
-                    <button>Response 4</button>
-                    <button>Response 5</button>
-                </div>
+                <div class="pre-canned-responses" id="preCannedResponses"></div>
                 <div class="chat-footer">                                                                                                       
                     <input type="text" id="chatInput" placeholder="Type a message...">                                                          
                     <button id="sendButton">Send</button>                                                                                       
@@ -229,7 +223,16 @@ class ChatBot extends HTMLElement {
             initialMessage.className = 'message assistant';
             initialMessage.textContent = assistant.initialPrompt;
             this.chatBody.appendChild(initialMessage);
-          } else {
+            const preCannedResponsesContainer = this.shadowRoot.getElementById('preCannedResponses');
+            assistant.initialResponses.forEach(response => {
+                const button = document.createElement('button');
+                button.textContent = response;
+                button.addEventListener('click', () => {
+                    this.chatInput.value = response;
+                    this.sendMessage();
+                });
+                preCannedResponsesContainer.appendChild(button);
+            });
             console.error('Assistant not found');
           }
         })
