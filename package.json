@@ -1,0 +1,13 @@
+{
+  "name": "chatbot-project",
+  "version": "1.0.0",
+  "description": "A chatbot interface with accessibility and audio playback features.",
+  "main": "chatbot.js",
+  "scripts": {
+    "start": "open example.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {}
+}
