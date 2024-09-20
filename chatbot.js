@@ -238,13 +238,13 @@ class ChatBot extends HTMLElement {
   // Returns the HTML structure for the chat bot component
   getHTML() {
     return `
-      <div class="fab" id="fab">
+      <div class="fab" id="fab" role="button" aria-label="Open chat">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="white">
               <path d="M12 3C6.48 3 2 6.58 2 11c0 1.64.5 3.16 1.36 4.5L2 21l5.5-1.36C9.84 20.5 11.36 21 13 21c5.52 0 10-3.58 10-8s-4.48-8-10-8zm0 14c-1.3 0-2.53-.3-3.6-.84l-.4-.2-3.2.8.8-3.2-.2-.4C4.3 13.53 4 12.3 4 11c0-3.31 3.58-6 8-6s8 2.69 8 6-3.58 6-8 6z"/>
           </svg>
       </div>
-      <div class="chat-window" id="chatWindow" style="display:none;">
-          <div class="chat-header">
+      <div class="chat-window" id="chatWindow" style="display:none;" role="dialog" aria-labelledby="chatHeader" aria-hidden="true">
+          <div class="chat-header" id="chatHeader" role="heading" aria-level="1">
               <span>Teddy Chat</span>
               <span class="header-spacer"></span>
               <span class="expand-btn" id="expandBtn">&#x26F6;</span>
@@ -253,12 +253,12 @@ class ChatBot extends HTMLElement {
           <div class="video-container">
               <video src="" autoplay loop muted playsinline></video>
           </div>
-          <div class="chat-body" id="chatBody"></div>
-          <div class="typing-indicator" id="typingIndicator">Teddy Chat is typing...</div>
+          <div class="chat-body" id="chatBody" role="log" aria-live="polite"></div>
+          <div class="typing-indicator" id="typingIndicator" aria-live="assertive">Teddy Chat is typing...</div>
           <div class="pre-canned-responses" id="preCannedResponses"></div>
-          <div class="chat-footer">
-              <input type="text" id="chatInput" placeholder="Type a message...">
-              <button id="sendButton">&#9658;</button>
+          <div class="chat-footer" role="form">
+              <input type="text" id="chatInput" placeholder="Type a message..." aria-label="Type a message">
+              <button id="sendButton" aria-label="Send message">&#9658;</button>
           </div>
       </div>
     `;
