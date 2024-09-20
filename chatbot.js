@@ -303,6 +303,9 @@ class ChatBot extends HTMLElement {
         .catch((error) => {
           console.error('Error sending message:', error);
         });
+      // Clear and focus the input box
+      this.chatInput.value = '';
+      this.chatInput.focus();
       this.chatBody.scrollTop = this.chatBody.scrollHeight;
     }
   }
