@@ -55,7 +55,7 @@ class ChatBot extends HTMLElement {
     this.chatBody.addEventListener('click', () => {
       if (this.isMobileDevice()) {
         this.chatInput.focus(); // Ensure the input is focused
-        this.chatInput.blur();  // Then blur it to hide the keyboard
+        this.chatInput.blur(); // Then blur it to hide the keyboard
       }
     });
   }
@@ -352,12 +352,15 @@ class ChatBot extends HTMLElement {
 
   // Toggles the chat window between expanded and normal size
   toggleExpand() {
+    window.open('https://teddy.chat/aap', '_blank');
+    /*
     const isFullscreen = this.chatWindow.style.width === '100%';
     this.chatWindow.style.width = isFullscreen ? '320px' : '100%';
     this.chatWindow.style.height = isFullscreen ? '80vh' : '100%';
     this.chatWindow.style.bottom = isFullscreen ? '90px' : '0';
     this.chatWindow.style.right = isFullscreen ? '20px' : '0';
     this.videoContainer.classList.toggle('fullscreen', !isFullscreen);
+    */
   }
 
   // Toggles the visibility of the chat window
@@ -382,7 +385,6 @@ class ChatBot extends HTMLElement {
       .then((response) => response.json())
       .then((data) => this.setupAssistant(data))
       .catch((error) => console.error('Error fetching experience:', error));
-
   }
 
   // Sets up the assistant with initial video, prompt, and responses
@@ -467,7 +469,7 @@ class ChatBot extends HTMLElement {
     this.chatInput.value = '';
     if (this.isMobileDevice()) {
       this.chatInput.focus(); // Ensure the input is focused
-      this.chatInput.blur();  // Then blur it to hide the keyboard
+      this.chatInput.blur(); // Then blur it to hide the keyboard
     }
     this.chatInput.focus();
   }
